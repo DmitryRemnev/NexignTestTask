@@ -14,16 +14,9 @@ public class TrieServiceImpl implements TrieService {
     @Override
     public Response countWord(String word) {
         if (word.isBlank()) {
-            return new Response(null, INVALID_PARAMETER);
+            throw new IllegalArgumentException(INVALID_PARAMETER);
         }
 
-        int result;
-        try {
-            result = trie.countWords(word);
-        } catch (Exception e) {
-            return new Response(null, e.getMessage());
-        }
-
-        return new Response(result, null);
+        return new Response(trie.countWords(word));
     }
 }
