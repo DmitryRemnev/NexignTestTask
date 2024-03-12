@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class Response {
-    private final String result;
+    private final int result;
+    private final String error;
 }
