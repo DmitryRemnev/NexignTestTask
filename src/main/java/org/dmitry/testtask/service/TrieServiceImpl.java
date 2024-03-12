@@ -1,7 +1,7 @@
 package org.dmitry.testtask.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dmitry.testtask.dto.Response;
+import org.dmitry.testtask.dto.CountWordsResponse;
 import org.dmitry.testtask.trie.Trie;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,11 @@ public class TrieServiceImpl implements TrieService {
     private final Trie trie;
 
     @Override
-    public Response countWord(String word) {
+    public CountWordsResponse countWord(String word) {
         if (word.isBlank()) {
             throw new IllegalArgumentException(INVALID_PARAMETER);
         }
 
-        return new Response(trie.countWords(word));
+        return new CountWordsResponse(trie.countWords(word));
     }
 }

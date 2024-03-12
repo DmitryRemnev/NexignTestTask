@@ -1,7 +1,7 @@
 package org.dmitry.testtask.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.dmitry.testtask.dto.Response;
+import org.dmitry.testtask.dto.CountWordsResponse;
 import org.dmitry.testtask.service.TrieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,7 +18,7 @@ public class TrieController {
     private final TrieService trieService;
 
     @GetMapping("/count/{word}")
-    public ResponseEntity<Response> cowntWord(@PathVariable String word) {
+    public ResponseEntity<CountWordsResponse> cowntWord(@PathVariable String word) {
         return ResponseEntity.ok(trieService.countWord(word));
     }
 }
