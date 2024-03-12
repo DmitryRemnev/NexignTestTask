@@ -17,6 +17,8 @@ import java.util.stream.Stream;
 @Configuration
 @Slf4j
 public class TrieConfig {
+    public static final String CHARACTER_REGEX = "([^A-Za-zА-Яа-я\\s])";
+    public static final String FILE_NOT_FOUND = "Файл не найден!";
     private final String filePath;
 
     public TrieConfig(@Value("${file-path}") String filePath) {
@@ -31,7 +33,7 @@ public class TrieConfig {
             List<String> list = stream.collect(Collectors.toList());
 
             for (String string : list) {
-                String[] arr = string.replaceAll("([^A-Za-zА-Яа-я\\s])", " ")
+                String[] arr = string.replaceAll(CHARACTER_REGEX, " ")
                         .trim()
                         .split("\\s+");
 
@@ -41,7 +43,7 @@ public class TrieConfig {
             }
 
         } catch (FileNotFoundException e) {
-            log.error("Файл не найден!");
+            log.error(FILE_NOT_FOUND);
         } catch (IOException e) {
             log.error(e.getMessage());
         }

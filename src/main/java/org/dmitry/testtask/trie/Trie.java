@@ -12,7 +12,7 @@ public class Trie {
 
             if (!current.getChildren().containsKey(c)) {
 
-                TrieNode node = getNewTrieNode();
+                var node = new TrieNode();
                 current.getChildren().put(c, node);
                 current.getNum().put(c, 1);
             } else {
@@ -24,12 +24,6 @@ public class Trie {
         }
 
         current.setEndOfWord(true);
-    }
-
-    TrieNode getNewTrieNode() {
-        TrieNode node = new TrieNode();
-        node.setEndOfWord(false);
-        return node;
     }
 
     public int countWords(String word) {
