@@ -29,7 +29,6 @@ public class Trie {
     public int countWords(String word) {
         TrieNode current = root;
         char c;
-
         int wordCount = 0;
 
         for (int i = 0; i < word.length(); i++) {

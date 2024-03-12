@@ -30,17 +30,13 @@ public class TrieConfig {
         var trie = new Trie();
 
         try (Stream<String> stream = Files.lines(Paths.get(filePath)).parallel()) {
-            List<String> list = stream.collect(Collectors.toList());
-
-            for (String string : list) {
-                String[] arr = string.replaceAll(CHARACTER_REGEX, " ")
-                        .trim()
-                        .split("\\s+");
+            stream.forEach(line -> {
+                String[] arr = createArrayFromLine(line);
 
                 for (String s : arr) {
                     trie.insert(s);
                 }
-            }
+            });
 
         } catch (FileNotFoundException e) {
             log.error(FILE_NOT_FOUND);
@@ -49,5 +45,11 @@ public class TrieConfig {
         }
 
         return trie;
+    }
+
+    private String[] createArrayFromLine(String line) {
+        return line.replaceAll(CHARACTER_REGEX, " ")
+                .trim()
+                .split("\\s+");
     }
 }
